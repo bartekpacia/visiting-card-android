@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.community.jboss.visitingcard">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <!--
-        TODO: Add location/GPS access permissions
         TODO: Change the Label of the Activities according to the Activity's context
         TODO: Change App Icon .i.e., ic_launcher
     -->
@@ -28,9 +30,6 @@
             </intent-filter>
         </activity>
 
-        <!--
-            TODO: Add Google Maps API key here
-        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
