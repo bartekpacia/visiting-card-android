@@ -1,17 +1,21 @@
 package com.community.jboss.visitingcard.Maps;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.community.jboss.visitingcard.R;
 import com.community.jboss.visitingcard.VisitingCard.ViewVisitingCard;
-import com.community.jboss.visitingcard.VisitingCard.VisitingCardActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,6 +24,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private static final String TAG = "MapsActivity";
+    private static final int RC_FINE_LOCATION = 101;
 
     private GoogleMap mMap;
 
@@ -58,8 +65,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng marker = new LatLng(50.270, 19.039);
+        mMap.addMarker(new MarkerOptions().position(marker).title("Katowice - the capital of Silesia region"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 6));
+        checkPermissions();
+    }
+
+    /**
+     * Checks if location permissions are granted. If they're not, opens up an AlertDialog asking user for accessing location
+     */
+    private void checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        }
+        else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, RC_FINE_LOCATION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case RC_FINE_LOCATION: {
+                //if location permissions are allowed, display user position on map
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        mMap.setMyLocationEnabled(true);
+                    }
+                }
+                //location is not allowed, close activity
+                else {
+                    Toast.makeText(MapsActivity.this, getString(R.string.missing_permissions_alert), Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+            default: {
+                Log.w(TAG, "Unknown permission request code");
+            }
+        }
     }
 }
