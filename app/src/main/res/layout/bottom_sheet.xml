@@ -4,7 +4,6 @@
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff"
     android:orientation="vertical"
     android:padding="16dp"
     app:behavior_hideable="true"
@@ -14,8 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
         android:weightSum="3">
 
         <TextView
@@ -33,12 +32,12 @@
         -->
         <TextView
             android:layout_width="0dp"
-            android:gravity="right"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textStyle="bold"
+            android:gravity="right"
+            android:text="(10)"
             android:textSize="15dp"
-            android:text="(10)"></TextView>
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -46,16 +45,6 @@
       TODO: Replace the below TextView with a ListView containing VisitingCards in that GeoFenced Location.
     -->
 
-    <TextView
-        android:id="@+id/list_item"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="10dp"
-        android:background="#000"
-        android:padding="8dp"
-        android:text="Add List View here"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        android:textSize="20sp" />
+    <include layout="@layout/visiting_card_item"></include>
 
 </LinearLayout>
