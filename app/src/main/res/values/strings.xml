@@ -13,4 +13,7 @@
     <string name="slide_3_header">Where was it…?</string>
     <string name="slide_3_content">Add location to your and others\' visiting cards, so you won\'t forget anymore where
         you met that important investor…</string>
+  
+    <string name="title_activity_settings">Settings</string>
+
 </resources>
