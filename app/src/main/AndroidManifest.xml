@@ -9,7 +9,6 @@
         TODO: Change the Label of the Activities according to the Activity's context
         TODO: Change App Icon .i.e., ic_launcher
     -->
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -38,7 +37,10 @@
             android:name=".Maps.MapsActivity"
             android:label="@string/title_activity_maps"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".VisitingCard.ViewVisitingCard"></activity>
+        <activity android:name=".VisitingCard.ViewVisitingCard" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>
