@@ -36,23 +36,17 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/ic_arrow_forward_black_24dp"
-        app:elevation="17dp"
-        app:fabSize="normal"
-        app:layout_anchor="@+id/include"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.733"
-        app:rippleColor="@color/colorAccent" />
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:soundEffectsEnabled="true"
+            android:src="@mipmap/ic_check"
+            app:elevation="17dp"
+            app:fabSize="normal"
+            app:layout_anchor="@+id/include"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorAccent" android:layout_marginEnd="32dp"/>
 
 </android.support.constraint.ConstraintLayout>
