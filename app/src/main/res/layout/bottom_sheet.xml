@@ -32,13 +32,13 @@
             TODO: The below TextView should show the VisitingCard count fetched form the Cloud .i.e., Count of Visiting card in the Response form the GET call
         -->
         <TextView
-            android:layout_width="0dp"
-            android:gravity="right"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="15dp"
-            android:text="(10)"></TextView>
+                android:layout_width="0dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:text="(10)"/>
     </LinearLayout>
 
 

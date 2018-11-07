@@ -1,6 +1,8 @@
 package com.community.jboss.visitingcard.VisitingCard;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +21,13 @@ public class VisitingCardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(R.anim.fade_in_linear, R.anim.fade_out_linear);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean darkThemeEnabled = preferences.getBoolean(getString(R.string.PREF_DARK_THEME), false);
+        if(darkThemeEnabled)
+        {
+            setTheme(R.style.AppTheme_Dark);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.visiting_card);
 
