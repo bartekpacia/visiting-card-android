@@ -36,23 +36,22 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:soundEffectsEnabled="true"
-        android:src="@drawable/ic_arrow_forward_black_24dp"
-        app:elevation="17dp"
-        app:fabSize="normal"
-        app:layout_anchor="@+id/include"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include"
-        app:layout_constraintVertical_bias="0.733"
-        app:rippleColor="@color/colorAccent" />
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:soundEffectsEnabled="true"
+            android:src="@drawable/ic_check_black_24dp"
+            app:elevation="14dp"
+            app:fabSize="normal"
+            app:layout_anchor="@+id/include"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/include"
+            app:layout_constraintVertical_bias="1"
+            app:rippleColor="@color/colorAccent"
+            app:layout_constraintHorizontal_bias="1"/>
 
 </android.support.constraint.ConstraintLayout>
