@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.community.jboss.visitingcard.VisitingCard.VisitingCardActivity;
+import com.community.jboss.visitingcard.visitingcard.VisitingCardActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
