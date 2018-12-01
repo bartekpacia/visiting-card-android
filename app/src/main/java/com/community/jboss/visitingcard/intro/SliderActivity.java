@@ -1,4 +1,4 @@
-package com.community.jboss.visitingcard.IntroScreens;
+package com.community.jboss.visitingcard.intro;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.community.jboss.visitingcard.LoginActivity;
 import com.community.jboss.visitingcard.R;
-import com.community.jboss.visitingcard.VisitingCard.VisitingCardActivity;
 
 public class SliderActivity extends AppCompatActivity {
 
