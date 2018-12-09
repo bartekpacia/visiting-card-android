@@ -41,22 +41,21 @@ public class VisitingCardActivity extends AppCompatActivity {
     private static final String TAG = "VisitingCardActivity";
     private static final int RC_PICK_IMAGE = 9002;
 
-    private FirebaseAuth auth;
     private FirebaseFirestore firestore;
     private StorageReference storageReference;
     private FirebaseUser user;
 
-    @BindView(R.id.fab) FloatingActionButton fab;
-    @BindView(R.id.button_openMap) Button buttonOpenMap;
-    @BindView(R.id.imageView_profileImage) CircleImageView profileImage;
-    @BindView(R.id.textView_email) TextView email;
-    @BindView(R.id.editText_name) EditText name;
-    @BindView(R.id.editText_linkedIn) EditText linkedin;
-    @BindView(R.id.editText_github) EditText github;
-    @BindView(R.id.editText_twitter) EditText twitter;
-    @BindView(R.id.editText_fb) EditText facebook;
-    @BindView(R.id.editText_gplus) EditText googleplus;
-    @BindView(R.id.editText_phone) EditText phone;
+    @BindView(R.id.fab) public FloatingActionButton fab;
+    @BindView(R.id.button_openMap) public Button buttonOpenMap;
+    @BindView(R.id.imageView_profileImage) public CircleImageView profileImage;
+    @BindView(R.id.textView_email) public TextView email;
+    @BindView(R.id.editText_name) public EditText name;
+    @BindView(R.id.editText_linkedIn) public EditText linkedin;
+    @BindView(R.id.editText_github) public EditText github;
+    @BindView(R.id.editText_twitter) public EditText twitter;
+    @BindView(R.id.editText_fb) public EditText facebook;
+    @BindView(R.id.editText_gplus) public EditText googleplus;
+    @BindView(R.id.editText_phone) public EditText phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +67,7 @@ public class VisitingCardActivity extends AppCompatActivity {
                 .setPersistenceEnabled(true)
                 .build();
 
-        auth = FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         firestore.setFirestoreSettings(settings);
         storageReference = FirebaseStorage.getInstance().getReference();

@@ -28,9 +28,9 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser user;
     private List<AuthUI.IdpConfig> authProviders;
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.fab) FloatingActionButton fab;
-    @BindView(R.id.textView_authStatus) TextView textView_authStatus;
+    @BindView(R.id.toolbar) public Toolbar toolbar;
+    @BindView(R.id.fab) public FloatingActionButton fab;
+    @BindView(R.id.textView_authStatus) public TextView textView_authStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

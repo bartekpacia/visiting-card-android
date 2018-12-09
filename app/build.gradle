@@ -15,10 +15,6 @@ android {
         lintOptions {
             abortOnError false
         }
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
     }
     buildTypes {
         release {
@@ -27,6 +23,10 @@ android {
         }
     }
     buildToolsVersion '28.0.3'
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
