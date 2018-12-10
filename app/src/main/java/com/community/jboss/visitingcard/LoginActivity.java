@@ -1,69 +1,97 @@
 package com.community.jboss.visitingcard;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-
-import com.community.jboss.visitingcard.introscreens.SliderActivity;
+import android.widget.TextView;
+import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.community.jboss.visitingcard.visitingcard.VisitingCardActivity;
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private final String PREFERENCES_NAME = "SharedPreferences";
-    private final String TAG = "LoginActivity";
+    private static final int RC_SIGN_IN = 9001;
+
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private List<AuthUI.IdpConfig> authProviders;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+    @BindView(R.id.textView_authStatus)
+    TextView textView_authStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        //TODO: The Slider should appear only on when the app is launched for the first time. - Add appropriate conditions for that.
-        // Here we check if this is a first time launch
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
+        auth = FirebaseAuth.getInstance();
+        textView_authStatus.setVisibility(View.INVISIBLE);
 
-        // Checking if the app was opened earlier, true will be default value showing this is the first time
-        boolean firstTimeUserLogin = sharedPreferences.getBoolean("firstTime", true);
-        if (firstTimeUserLogin) {
-            Log.d(TAG, "Opening App For First Time");
+        authProviders = Arrays.asList(
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.EmailBuilder().build()
+        );
 
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("firstTime", false);
-            editor.apply();
+        fab.setOnClickListener(view -> Snackbar.make(view, "Proceed to Visiting Card Layout", Snackbar.LENGTH_LONG)
+                .setAction("Yes", snackView -> proceedIfSignedIn()).show());
 
-            Intent intent = new Intent(LoginActivity.this, SliderActivity.class);
-            startActivity(intent);
+        //TODO Add possibility to logout
+        proceedIfSignedIn();
+    }
 
-            finish();
-        }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        // TODO: Perform Firebase Authentication using Email Auth or Google Sign-in.
-
-        // TODO: Have a Sign-in with google Button.
-
-        //TODO: Move the FAB to bottom Right and replace it's icon with a check icon
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Proceed to Visiting Card Layout", Snackbar.LENGTH_LONG)
-                        .setAction("Yes", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                // TODO: Go to next stage only when the User is Authenticated.
-                                Intent toVisitingCard = new Intent(LoginActivity.this, VisitingCardActivity.class);
-                                startActivity(toVisitingCard);
-                            }
-                        }).show();
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                user = auth.getCurrentUser();
+                textView_authStatus.setVisibility(View.VISIBLE);
+                Intent i = new Intent(this, VisitingCardActivity.class);
+                startActivity(i);
+            } else {
+                textView_authStatus.setVisibility(View.INVISIBLE);
+                Toast.makeText(this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
             }
-        });
+        }
+    }
+
+    private void proceedIfSignedIn() {
+        if (user != null) {
+            textView_authStatus.setVisibility(View.VISIBLE);
+            Intent i = new Intent(this, VisitingCardActivity.class);
+            startActivity(i);
+        } else {
+            textView_authStatus.setVisibility(View.INVISIBLE);
+            startActivityForResult(createSignInIntent(), RC_SIGN_IN);
+        }
+    }
+
+    private Intent createSignInIntent() {
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setIsSmartLockEnabled(true)
+                .setAvailableProviders(authProviders)
+                .build();
+
+        return signInIntent;
     }
 }

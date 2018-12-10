@@ -8,10 +8,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.DialogInterface;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,17 +16,14 @@ import android.view.View;
 
 import com.community.jboss.visitingcard.about.AboutActivity;
 import com.community.jboss.visitingcard.maps.MapsActivity;
-import com.community.jboss.visitingcard.R;
-import com.community.jboss.visitingcard.SettingsActivity;
 
 
-
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import com.community.jboss.visitingcard.R;
 import com.community.jboss.visitingcard.SettingsActivity;
-import com.community.jboss.visitingcard.maps.MapsActivity;
+
 import java.io.IOException;
+
 import siclo.com.ezphotopicker.api.EZPhotoPick;
 import siclo.com.ezphotopicker.api.EZPhotoPickStorage;
 import siclo.com.ezphotopicker.api.models.EZPhotoPickConfig;
@@ -42,16 +35,17 @@ public class VisitingCardActivity extends AppCompatActivity {
     private ImageButton profile_img;
 
     public static final String PREF_DARK_THEME = "dark_theme";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.visiting_card);
 
-	profile_img=findViewById(R.id.profile_img);
+        profile_img = findViewById(R.id.profile_img);
 
         // TODO: Add a ImageView and a number of EditText to get his/her Visiting Card details (Currently authenticated User)
 
-        // TODO: Add profileImage, Name, Email, PhoneNumber, Github, LinkedIn & Twitter Fields.
+        // TODO: Add profileImage, name, Email, PhoneNumber, Github, LinkedIn & Twitter Fields.
 
         // TODO: Clicking the ImageView should invoke an implicit intent to take an image using camera / pick an image from the Gallery.
 
@@ -102,9 +96,13 @@ public class VisitingCardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.favorite:
+                Intent favoriteIntent = new Intent(VisitingCardActivity.this, FavoritesActivity.class);
+                startActivity(favoriteIntent);
+                return true;
             case R.id.settings:
-                Intent intent = new Intent(VisitingCardActivity.this, SettingsActivity.class);
-                startActivity(intent);
+                Intent settingsIntent = new Intent(VisitingCardActivity.this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 return true;
             case R.id.about:
                 Intent aboutIntent = new Intent(VisitingCardActivity.this, AboutActivity.class);
@@ -113,15 +111,15 @@ public class VisitingCardActivity extends AppCompatActivity {
             case R.id.darktheme:
                 SharedPreferences preferences = android.preference.PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 boolean useDarkTheme = preferences.getBoolean(AboutActivity.PREF_DARK_THEME, false);
-                if(!useDarkTheme)
-                {
+                if (!useDarkTheme) {
                     SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
                     editor.putBoolean(PREF_DARK_THEME, true);
                     editor.apply();
-                }
-                else {SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+                } else {
+                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
                     editor.putBoolean(PREF_DARK_THEME, false);
-                    editor.apply();}
+                    editor.apply();
+                }
                 Intent restarter = getIntent();
                 finish();
                 startActivity(restarter);
@@ -129,7 +127,7 @@ public class VisitingCardActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    
+
     public void select_img(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Select image source")

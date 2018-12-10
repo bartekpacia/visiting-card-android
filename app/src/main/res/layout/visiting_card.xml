@@ -11,7 +11,7 @@
     android:weightSum="100">
 
     <!--
-      TODO: Add profileImage - ImageView ; {Name, Email, PhoneNumber, Github, LinkedIn & Twitter Fields} - EditText
+      TODO: Add profileImage - ImageView ; {name, Email, PhoneNumber, Github, LinkedIn & Twitter Fields} - EditText
     -->
 
     <android.support.v7.widget.CardView

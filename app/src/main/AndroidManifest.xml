@@ -7,9 +7,11 @@
         TODO: Change App Icon .i.e., ic_launcher
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature android:name="android.hardware.location.gps" />
+
     <uses-permission android:name="android.permission.INTERNET" />
-  
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <!--             TODO: Add Google Maps API key here -->
+        <!-- TODO: Add Google Maps API key here -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -41,10 +43,13 @@
         <activity android:name=".visitingcard.ViewVisitingCard" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
         <activity
             android:name=".about.AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".visitingcard.FavoritesActivity"
+            android:parentActivityName=".visitingcard.VisitingCardActivity"
+            android:label="@string/favorites"/>
     </application>
 
 </manifest>

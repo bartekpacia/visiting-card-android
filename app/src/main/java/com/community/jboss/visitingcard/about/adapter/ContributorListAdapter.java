@@ -40,15 +40,15 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.Name.setText(list.get(position).getName());
-        holder.Handle.setText(("@" + list.get(position).getName()));
+        holder.name.setText(list.get(position).getName());
+        holder.handle.setText(("@" + list.get(position).getName()));
         Glide.with(context)
                 .load(list.get(position).getAvatar())
-                .into(holder.Userimage);
+                .into(holder.userImage);
         if (theme) {
-            holder.Name.setTextColor(Color.WHITE);
-            holder.Handle.setTextColor(Color.WHITE);
-            holder.mcardview.setCardBackgroundColor(Color.parseColor("#212121"));
+            holder.name.setTextColor(Color.WHITE);
+            holder.handle.setTextColor(Color.WHITE);
+            holder.cardView.setCardBackgroundColor(Color.parseColor("#212121"));
         }
 
     }
@@ -60,18 +60,18 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public AppCompatTextView Name;
-        public AppCompatTextView Handle;
-        public CircularImageView Userimage;
-        public CardView mcardview;
+        public AppCompatTextView name;
+        public AppCompatTextView handle;
+        public CircularImageView userImage;
+        public CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            Name = (AppCompatTextView) itemView.findViewById(R.id.contributorname);
-            Handle = (AppCompatTextView) itemView.findViewById(R.id.contributorhandle);
-            Userimage = itemView.findViewById(R.id.contributorimage);
-            mcardview = itemView.findViewById(R.id.contributor_card_view);
+            name = itemView.findViewById(R.id.contributorname);
+            handle = itemView.findViewById(R.id.contributorhandle);
+            userImage = itemView.findViewById(R.id.contributorimage);
+            cardView = itemView.findViewById(R.id.contributor_card_view);
 
 
         }

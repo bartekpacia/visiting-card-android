@@ -20,7 +20,7 @@ public class ViewVisitingCard extends AppCompatActivity {
         setContentView(R.layout.activity_view_visiting_card);
 
         // TODO: Align FAB to Bottom Right and replace it's icon with a SAVE icon
-        // TODO: On Click on FAB should give out an implicit intent to Contacts app and the intent should contain Name, Email and Phone Number
+        // TODO: On Click on FAB should give out an implicit intent to Contacts app and the intent should contain name, Email and Phone Number
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
